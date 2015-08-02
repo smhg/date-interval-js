@@ -1,0 +1,44 @@
+{
+  "name": "@smhg/date-interval",
+  "version": "0.1.0",
+  "description": "Algebraic operations for time intervals",
+  "main": "dist/interval.js",
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "babel-node -r node_modules/.bin/_mocha test",
+    "preversion": "npm run lint && npm test",
+    "postversion": "git push && git push --tags",
+    "build": "npm run lint && npm test && babel src --optional runtime --source-maps -d dist",
+    "prepublish": "npm run build",
+    "postpublish": "rm -rf dist"
+  },
+  "keywords": [
+    "time",
+    "interval",
+    "iso",
+    "8601",
+    "iso 8601",
+    "iso8601",
+    "time interval",
+    "timespan"
+  ],
+  "author": "Sam Hauglustaine",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.20",
+    "babel-eslint": "^4.0.5",
+    "eslint": "^1.0.0",
+    "mocha": "^2.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smhg/date-interval-js.git"
+  },
+  "homepage": "https://github.com/smhg/date-interval-js#readme",
+  "bugs": {
+    "url": "https://github.com/smhg/date-interval-js/issues"
+  },
+  "dependencies": {
+    "date-duration": "^0.1.0"
+  }
+}
