@@ -49,17 +49,20 @@ describe('interval', () => {
     it('should detect overlapping intervals', () => {
       let iso1 = '2015-08-03T12:00:00.000Z/2015-08-04T12:00:00.000Z',
         iso2 = '2015-08-04T00:00:00.000Z/2015-08-05T00:00:00.000Z',
-        iso3 = '2015-08-06T12:00:00.000Z/2015-08-07T12:00:00.000Z';
+        iso3 = '2015-08-06T12:00:00.000Z/2015-08-07T12:00:00.000Z',
+        iso4 = '2015-08-07T12:00:00.000Z/2015-08-10T12:00:00.000Z';
 
       assert(createInterval(iso1).overlaps(createInterval(iso2)));
       assert(!createInterval(iso1).overlaps(createInterval(iso3)));
+      assert(!createInterval(iso3).overlaps(createInterval(iso4)));
+      assert(!createInterval(iso4).overlaps(createInterval(iso3)));
 
-      let iso4 = '2015-10-25T02:00:00+01:00/2015-10-25T03:00:00+01:00',
-        iso5 = '2015-10-25T01:00:00+02:00/2015-10-25T02:00:00+02:00',
-        iso6 = '2015-10-25T01:00:00+02:00/2015-10-25T03:00:00+01:00';
+      let iso5 = '2015-10-25T02:00:00+01:00/2015-10-25T03:00:00+01:00',
+        iso6 = '2015-10-25T01:00:00+02:00/2015-10-25T02:00:00+02:00',
+        iso7 = '2015-10-25T01:00:00+02:00/2015-10-25T03:00:00+01:00';
 
-      assert(!createInterval(iso4).overlaps(createInterval(iso5)));
-      assert(createInterval(iso4).overlaps(createInterval(iso6)));
+      assert(!createInterval(iso5).overlaps(createInterval(iso6)));
+      assert(createInterval(iso5).overlaps(createInterval(iso7)));
     });
   });
 
@@ -71,23 +74,11 @@ describe('interval', () => {
       assert(createInterval(iso1).union(createInterval(iso2)).length === 1);
 
       let iso3 = '2015-08-03T12:00:00.000Z/2015-08-04T12:00:00.000Z',
-        iso4 = '2015-08-04T18:00:00.000Z/2015-08-05T12:00:00.000Z';
+        iso4 = '2015-08-04T18:00:00.000Z/2015-08-05T12:00:00.000Z',
+        iso5 = '2015-08-04T12:00:00.000Z/2015-08-05T12:00:00.000Z';
 
       assert(createInterval(iso3).union(createInterval(iso4)).length === 2);
-    });
-  });
-
-  describe('#union()', () => {
-    it('should create union arrays', () => {
-      let iso1 = '2015-08-03T12:00:00.000Z/2015-08-04T12:00:00.000Z',
-        iso2 = '2015-08-04T00:00:00.000Z/2015-08-05T12:00:00.000Z';
-
-      assert(createInterval(iso1).union(createInterval(iso2)).length === 1);
-
-      let iso3 = '2015-08-03T12:00:00.000Z/2015-08-04T12:00:00.000Z',
-        iso4 = '2015-08-04T18:00:00.000Z/2015-08-05T12:00:00.000Z';
-
-      assert(createInterval(iso3).union(createInterval(iso4)).length === 2);
+      assert(createInterval(iso3).union(createInterval(iso5)).length === 1);
     });
   });
 
@@ -124,10 +115,10 @@ describe('interval', () => {
       assert.equal(intersection2.toString(), '2015-08-04T00:00:00.000Z/2015-08-05T00:00:00.000Z');
 
       let iso5 = '2015-08-03T12:00:00.000Z/2015-08-05T12:00:00.000Z',
-        iso6 = '2015-08-07T00:00:00.000Z/2015-08-010T00:00:00.000Z',
+        iso6 = '2015-08-07T00:00:00.000Z/2015-08-10T00:00:00.000Z',
         intersection3 = createInterval(iso5).intersection(createInterval(iso6));
 
-      assert.ok(typeof intersection3 === 'undefined');
+      assert.equal(typeof intersection3, 'undefined');
     });
   });
 });

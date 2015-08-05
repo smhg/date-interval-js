@@ -39,14 +39,14 @@ export default function createInterval () {
       return `${(new Date(start)).toISOString()}/${(new Date(end)).toISOString()}`;
     },
     overlaps = interval => {
-      return start <= interval.end && interval.start <= end;
+      return start < interval.end && interval.start < end;
     },
     union = function (interval) {
-      if (!overlaps(interval)) {
-        return [createInterval(start, end), createInterval(interval.start, interval.end)];
+      if (overlaps(interval) || end === interval.start || interval.end === start) {
+        return [createInterval(start <= interval.start ? start : interval.start, end >= interval.end ? end : interval.end)];
       }
 
-      return [createInterval(start <= interval.start ? start : interval.start, end >= interval.end ? end : interval.end)];
+      return [createInterval(start, end), createInterval(interval.start, interval.end)];
     },
     diff = function (interval) {
       if (!overlaps(interval)) {
