@@ -5,12 +5,13 @@
   "main": "dist/interval.js",
   "scripts": {
     "lint": "eslint src test",
-    "test": "babel-node -r node_modules/.bin/_mocha test",
-    "preversion": "npm run lint && npm test",
+    "clean": "rm -rf dist",
+    "build": "npm run lint && babel --source-maps -d dist/ src/",
+    "test": "npm run build && mocha --compilers js:babel-core/register test",
+    "preversion": "npm run test",
     "postversion": "git push && git push --tags",
-    "build": "npm run lint && npm test && babel src --source-maps -d dist",
-    "prepublish": "npm run build",
-    "postpublish": "rm -rf dist"
+    "prepublish": "npm run test",
+    "postpublish": "npm run clean"
   },
   "keywords": [
     "time",
@@ -25,10 +26,12 @@
   "author": "Sam Hauglustaine",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.20",
-    "babel-eslint": "^4.0.5",
-    "eslint": "^1.0.0",
-    "mocha": "^2.2.5"
+    "babel-cli": "6.2.0",
+    "babel-core": "6.2.1",
+    "babel-eslint": "4.1.6",
+    "babel-preset-es2015": "6.1.18",
+    "eslint": "1.10.2",
+    "mocha": "2.3.4"
   },
   "repository": {
     "type": "git",
@@ -39,6 +42,6 @@
     "url": "https://github.com/smhg/date-interval-js/issues"
   },
   "dependencies": {
-    "date-duration": "^0.1.0"
+    "date-duration": "0.2.1"
   }
 }
