@@ -5,3 +5,4 @@ test
 .eslintrc
 .gitignore
 .travis.yml
+src
