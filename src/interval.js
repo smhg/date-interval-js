@@ -26,8 +26,8 @@ let toDate = value => {
   };
 
 export default function createInterval () {
-  if (arguments.length === 0) {
-    throw new Error('Time interval requires at least one argument');
+  if (arguments.length === 0 || !arguments[0]) {
+    throw new Error('Time interval requires at least one valid argument');
   }
 
   let [start, end] = (arguments.length === 1 ? arguments[0].split('/') : [arguments[0], arguments[1]])

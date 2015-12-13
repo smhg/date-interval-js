@@ -5,8 +5,24 @@ import createInterval from '../dist/interval';
 
 describe('interval', () => {
   describe('#()', () => {
-    it('should require minimum one parameter', () => {
-      assert.throws(() => { createInterval(); });
+    it('should require one parameter', (done) => {
+      try {
+        createInterval();
+        done(new Error('No parameters does not throw an error'));
+      } catch (e) {
+        assert.equal(e.message, 'Time interval requires at least one valid argument');
+        done();
+      }
+    });
+
+    it('should require a valid first parameter', (done) => {
+      try {
+        createInterval(undefined);
+        done(new Error('Invalid first parameter does not throw an error'));
+      } catch (e) {
+        assert.equal(e.message, 'Time interval requires at least one valid argument');
+        done();
+      }
     });
 
     it('should accept an ISO 8601 start/end string', () => {
