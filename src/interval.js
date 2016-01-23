@@ -50,24 +50,24 @@ export default function createInterval () {
     },
     diff = function (interval) {
       if (!overlaps(interval)) {
-          return [createInterval(start, end)];
+        return [createInterval(start, end)];
       }
 
       if (interval.start <= start) {
-          // start before/together
-          if (end > interval.end) {
-              // end inside
-              return [createInterval(interval.end, end)];
-          }
+        // start before/together
+        if (end > interval.end) {
+          // end inside
+          return [createInterval(interval.end, end)];
+        }
 
-          // end after/together
-          return [];
+        // end after/together
+        return [];
       }
 
       // start inside
       if (interval.end < end) {
-          // end inside
-          return [createInterval(start, interval.start), createInterval(interval.end, end)];
+        // end inside
+        return [createInterval(start, interval.start), createInterval(interval.end, end)];
       }
 
       // end after/together
@@ -81,8 +81,8 @@ export default function createInterval () {
       if (interval.start <= start) {
         // start before/together
         if (end > interval.end) {
-            // end inside
-            return createInterval(start, interval.end);
+          // end inside
+          return createInterval(start, interval.end);
         }
 
         // end after/together
@@ -91,8 +91,8 @@ export default function createInterval () {
 
       // start inside
       if (interval.end < end) {
-          // end inside
-          return createInterval(interval.start, interval.end);
+        // end inside
+        return createInterval(interval.start, interval.end);
       }
 
       // end after/together
