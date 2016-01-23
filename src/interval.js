@@ -2,7 +2,7 @@
 
 import createDuration from 'date-duration';
 
-let toDate = value => {
+const toDate = value => {
     if (typeof value === 'object' && typeof value.toDate === 'function') {
       return value.toDate();
     }
@@ -31,9 +31,9 @@ export default function createInterval () {
   }
 
   let [start, end] = (arguments.length === 1 ? arguments[0].split('/') : [arguments[0], arguments[1]])
-      .map(toDate)
-      .map(durationToDate)
-      .map(value => { return +value; });
+    .map(toDate)
+    .map(durationToDate)
+    .map(value => { return +value; });
 
   const toString = () => {
       return `${(new Date(start)).toISOString()}/${(new Date(end)).toISOString()}`;
