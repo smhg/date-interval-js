@@ -11,14 +11,24 @@ $ npm install @smhg/date-interval
 ```javascript
 import Interval from '@smhg/date-interval';
 
-let interval = Interval('2015-08-03T12:00:00Z/2015-08-04T12:00:00Z');
+// with ISO 8601 string
+let interval1 = Interval('2015-08-03T12:00:00Z/2015-08-04T12:00:00Z');
+
+// with 2 dates
+let interval2 = Interval(new Date('2015-08-03T12:00:00Z'), new Date('2015-08-04T12:00:00Z'));
 ```
 
 ## API
 ### Interval()
-Pass a string in ISO 8601 interval format or a start and end Date object to create a duration.
+#### Interval(String)
+Pass a string in ISO 8601 interval format to create a duration.
+
+#### Interval(Date, Date)
+Pass a start and end Date object to create a duration.
 
 ### interval.toString()
+Return interval as an ISO 8601 formatted string.
+
 ### interval.overlaps()
 ### interval.union()
 ### interval.intersection()
