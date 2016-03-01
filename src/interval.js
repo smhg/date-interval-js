@@ -33,7 +33,7 @@ export default function createInterval () {
   let [start, end] = (arguments.length === 1 ? arguments[0].split('/') : [arguments[0], arguments[1]])
     .map(toDate)
     .map(durationToDate)
-    .map(value => { return +value; });
+    .map(value => +value);
 
   const toString = () => {
       return `${(new Date(start)).toISOString()}/${(new Date(end)).toISOString()}`;
