@@ -35,12 +35,8 @@ export default function createInterval () {
     .map(durationToDate)
     .map(value => +value);
 
-  const toString = () => {
-      return `${(new Date(start)).toISOString()}/${(new Date(end)).toISOString()}`;
-    },
-    overlaps = interval => {
-      return start < interval.end && interval.start < end;
-    },
+  const toString = () => `${(new Date(start)).toISOString()}/${(new Date(end)).toISOString()}`,
+    overlaps = interval => start < interval.end && interval.start < end,
     union = function (interval) {
       if (overlaps(interval) || end === interval.start || interval.end === start) {
         return [createInterval(start <= interval.start ? start : interval.start, end >= interval.end ? end : interval.end)];
