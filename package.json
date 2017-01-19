@@ -44,6 +44,6 @@
     "url": "https://github.com/smhg/date-interval-js/issues"
   },
   "dependencies": {
-    "date-duration": "0.3.0"
+    "date-duration": "1.0.1"
   }
 }
