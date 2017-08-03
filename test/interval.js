@@ -1,7 +1,7 @@
 'use strict';
 
 import assert from 'assert';
-import createInterval from '../dist/interval';
+import createInterval from '../src/interval';
 
 describe('interval', () => {
   describe('#()', () => {
