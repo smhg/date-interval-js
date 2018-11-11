@@ -11,7 +11,7 @@ describe('interval', () => {
         createInterval();
         done(new Error('No parameters does not throw an error'));
       } catch (e) {
-        assert.equal(e.message, 'Time interval requires at least one valid argument');
+        assert.strictEqual(e.message, 'Time interval requires at least one valid argument');
         done();
       }
     });
@@ -21,7 +21,7 @@ describe('interval', () => {
         createInterval(undefined);
         done(new Error('Invalid first parameter does not throw an error'));
       } catch (e) {
-        assert.equal(e.message, 'Time interval requires at least one valid argument');
+        assert.strictEqual(e.message, 'Time interval requires at least one valid argument');
         done();
       }
     });
@@ -58,7 +58,7 @@ describe('interval', () => {
     it('should return to string', () => {
       let iso = '2015-08-03T12:00:00.000Z/2015-08-04T12:00:00.000Z';
 
-      assert.equal(createInterval(iso).toString(), iso);
+      assert.strictEqual(createInterval(iso).toString(), iso);
     });
   });
 
@@ -106,14 +106,14 @@ describe('interval', () => {
       let diff1 = createInterval(iso1).diff(createInterval(iso2));
 
       assert(diff1.length === 1);
-      assert.equal(diff1[0].toString(), '2015-08-03T12:00:00.000Z/2015-08-04T00:00:00.000Z');
+      assert.strictEqual(diff1[0].toString(), '2015-08-03T12:00:00.000Z/2015-08-04T00:00:00.000Z');
 
       let iso3 = '2015-08-03T12:00:00.000Z/2015-08-05T12:00:00.000Z';
       let iso4 = '2015-08-04T00:00:00.000Z/2015-08-05T00:00:00.000Z';
       let diff2 = createInterval(iso3).diff(createInterval(iso4));
 
       assert(diff2.length === 2);
-      assert.equal(diff2[1].toString(), '2015-08-05T00:00:00.000Z/2015-08-05T12:00:00.000Z');
+      assert.strictEqual(diff2[1].toString(), '2015-08-05T00:00:00.000Z/2015-08-05T12:00:00.000Z');
     });
   });
 
@@ -123,19 +123,19 @@ describe('interval', () => {
       let iso2 = '2015-08-04T00:00:00.000Z/2015-08-05T12:00:00.000Z';
       let intersection1 = createInterval(iso1).intersection(createInterval(iso2));
 
-      assert.equal(intersection1.toString(), '2015-08-04T00:00:00.000Z/2015-08-04T12:00:00.000Z');
+      assert.strictEqual(intersection1.toString(), '2015-08-04T00:00:00.000Z/2015-08-04T12:00:00.000Z');
 
       let iso3 = '2015-08-03T12:00:00.000Z/2015-08-05T12:00:00.000Z';
       let iso4 = '2015-08-04T00:00:00.000Z/2015-08-05T00:00:00.000Z';
       let intersection2 = createInterval(iso3).intersection(createInterval(iso4));
 
-      assert.equal(intersection2.toString(), '2015-08-04T00:00:00.000Z/2015-08-05T00:00:00.000Z');
+      assert.strictEqual(intersection2.toString(), '2015-08-04T00:00:00.000Z/2015-08-05T00:00:00.000Z');
 
       let iso5 = '2015-08-03T12:00:00.000Z/2015-08-05T12:00:00.000Z';
       let iso6 = '2015-08-07T00:00:00.000Z/2015-08-10T00:00:00.000Z';
       let intersection3 = createInterval(iso5).intersection(createInterval(iso6));
 
-      assert.equal(typeof intersection3, 'undefined');
+      assert.strictEqual(typeof intersection3, 'undefined');
     });
   });
 });
