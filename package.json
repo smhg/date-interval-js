@@ -3,10 +3,11 @@
   "version": "1.1.6",
   "description": "Algebraic operations for time intervals",
   "main": "dist/interval.js",
+  "module": "src/interval.js",
   "scripts": {
     "lint": "eslint src test",
     "build": "babel --source-maps -d dist src",
-    "test": "mocha --require babel-register",
+    "test": "mocha --require @babel/register",
     "clean": "rm -rf dist",
     "preversion": "npm run lint && npm run test",
     "postversion": "git push && git push --tags",
@@ -26,11 +27,11 @@
   "author": "Sam Hauglustaine",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
     "eslint": "^5.14.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
@@ -48,7 +49,7 @@
     "url": "https://github.com/smhg/date-interval-js/issues"
   },
   "dependencies": {
-    "babel-runtime": "^6.26.0",
+    "@babel/runtime": "^7.3.1",
     "date-duration": "^1.4.1"
   },
   "browserslist": [

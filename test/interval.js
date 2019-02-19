@@ -1,6 +1,3 @@
-'use strict';
-
-import 'babel-polyfill';
 import assert from 'assert';
 import createInterval from '../src/interval';
 
