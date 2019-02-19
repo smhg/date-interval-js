@@ -49,8 +49,9 @@
     "url": "https://github.com/smhg/date-interval-js/issues"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "date-duration": "^1.4.1"
+    "date-duration": "^1.5.1"
   },
   "browserslist": [
     "last 1 version",
