@@ -51,7 +51,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
-    "date-duration": "1.7.1"
+    "date-duration": "^1.7.1"
   },
   "browserslist": [
     "last 1 version",
