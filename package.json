@@ -1,6 +1,6 @@
 {
   "name": "@smhg/date-interval",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Algebraic operations for time intervals",
   "main": "dist/interval.js",
   "module": "src/interval.js",
