@@ -28,7 +28,7 @@ export default function createInterval () {
     throw new Error('Time interval requires at least one valid argument');
   }
 
-  let [start, end] = (arguments.length === 1 ? arguments[0].split('/') : [arguments[0], arguments[1]])
+  const [start, end] = (arguments.length === 1 ? arguments[0].split('/') : [arguments[0], arguments[1]])
     .map(toDate)
     .map(durationToDate)
     .map(value => +value);
